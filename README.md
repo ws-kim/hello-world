@@ -63,3 +63,37 @@ class StatementSample
       Console.Write("({0}, {1})", x, y);
    }
 }
+
+// ほぼ同じ意味
+Console.WriteLine(string.Format("{0,4:x}", x));
+Console.WriteLine($"{x,4:x}");
+
+// 書き方を忘れて、 , と : を間違えてしまうと…
+
+// 実行時エラー
+Console.WriteLine(string.Format("{0,x}", x));
+
+// コンパイル エラー
+Console.WriteLine($"{x,x}");
+
+using System;
+
+class CheckedSample
+{
+  static void Main()
+  {
+    try
+    {
+      checked
+      {
+        sbyte a = 64;
+        sbyte b = 65;
+        sbyte c = (sbyte)(a + b);
+      }
+    }
+    catch(OverflowException ex)
+    {
+      Console.Write(ex.Message);
+    }
+  }
+}
